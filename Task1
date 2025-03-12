@@ -1,0 +1,36 @@
+import math
+import random
+
+
+def lcm(a, b):
+    return abs(a * b) // math.gcd(a, b)
+
+
+def lcm_of_three(a, b, c):
+    return lcm(lcm(a, b), c)
+
+
+def brain_lcm_game():
+    print("Welcome to the Brain Games!")
+    name = input("May I have your name? ")
+    print(f"Hello, {name}!")
+    print("Find the smallest common multiple of given numbers.")
+
+    for _ in range(3):
+        numbers = [random.randint(1, 20) for _ in range(3)]
+        correct_answer = lcm_of_three(*numbers)
+
+        print(f"Question: {' '.join(map(str, numbers))}")
+        user_answer = int(input("Your answer: "))
+
+        if user_answer == correct_answer:
+            print("Correct!")
+        else:
+            print(f"'{user_answer}' is wrong answer ;(. Correct answer was '{correct_answer}'.")
+            print(f"Let's try again, {name}!")
+            return
+
+    print(f"Congratulations, {name}!")
+
+
+brain_lcm_game()
